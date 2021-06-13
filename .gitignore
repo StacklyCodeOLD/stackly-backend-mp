@@ -1,0 +1,5 @@
+node_modules/
+public/imagenes-subidas
+logs/
+newrelic_agent.log
+.env
