@@ -14,7 +14,12 @@ async function getProfile(req, res, next) {
             role: req.user.role,
             avatar: req.user.avatar,
             email: req.user.email,
-            mercadopago: mercadopago,
+            mercadopago: {
+                id: mercadopago._id,
+                email: mercadopago.email_mp,
+                nickname: mercadopago.nickname_mp,
+                status: mercadopago.status
+            },
             token: req.query.secret_token,
             productos_url: '/api/domain'
         });
