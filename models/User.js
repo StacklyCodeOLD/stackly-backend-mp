@@ -32,12 +32,12 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    mercadopago: {
+    mercadopago: [{
         type: Schema.Types.ObjectId, ref: 'Usermp'
-    }
+    }]
 });
 
-const usermp = new Schema({
+const UsermpSchema = new Schema({
     _id: {
       type: String,
       //required: true,
@@ -64,7 +64,7 @@ const usermp = new Schema({
     },
 });
 
-const Usermp = mongoose.model("Usermp", usermp);
-const User = mongoose.model('users', UserSchema);
+const Usermp = mongoose.model("Usermp", UsermpSchema);
+const User = mongoose.model('Users', UserSchema);
 
-module.exports = {User, Usermp};
+module.exports = {User, Usermp} ;

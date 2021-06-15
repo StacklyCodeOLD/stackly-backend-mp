@@ -8,7 +8,7 @@ const log = getLogger(__dirname, __filename)
 const validateRegisterInput = require('../validation/register');
 const validateLoginInput = require('../validation/login');
 
-const User = require('../models/User');
+const {User} = require('../models/User');
 
 async function postRegister(req, res) {
     try {
@@ -34,7 +34,8 @@ async function postRegister(req, res) {
                     name: req.body.name,
                     email: req.body.email,
                     password: req.body.password,
-                    avatar
+                    avatar,
+                    mercadopago: req.body.mercadopago
                 });
 
                 bcrypt.genSalt(10, (err, salt) => {
@@ -85,7 +86,8 @@ async function postLogin(req, res) {
                                 id: user.id,
                                 name: user.name,
                                 role: user.role,
-                                avatar: user.avatar
+                                avatar: user.avatar,
+                                mercadopago: user.mercadopago
                             }
                             jwt.sign(payload, 'secret', {
                                 expiresIn: 3600

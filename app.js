@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logHandler);
 
 app.use('/api/users', users);
-app.use('/api/callback', callback);
+app.use('/api', callback);
 app.use('/api', passport.authenticate('jwt', { session: false }), authRoute);
 
 app.disable('etag');

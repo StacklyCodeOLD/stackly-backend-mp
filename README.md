@@ -1,4 +1,4 @@
-# Json Web Token, login, registro y CRUD con Node.js 
+# Mercado Pago Payment Backend
 
 ### Instalación
 
@@ -50,9 +50,7 @@ $ npm test
 /api/users/register (POST)
 
 /api/profile (GET)
-/api/domain (GET) // all domains
-/api/domain (PUT) // param ?link=http://wwww.domain.com
-/api/domain (POST) // param ?link=http://wwww.domain.com
+
 ```
 #### Modelo User
 
@@ -62,13 +60,4 @@ email: String - requerido
 password: String - requerido
 avatar: String
 date: Date
-```
-
-#### Modelo Domain
-
-```
-name: String
-description: String
-link: String
-seen: Number
 ```
