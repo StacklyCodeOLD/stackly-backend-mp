@@ -3,6 +3,11 @@ const { User, Usermp } = require("../models/User");
 
 async function getMercadoPago(req, res) {
   try {
+    const token = await axios.post("http://localhost:4000/api/users/login", {
+      email: "craig@stacklycode.com",
+      password: "coliseo1234",
+    });
+
     const resulta = await axios.post(
       "https://api.mercadopago.com/oauth/token",
       {
@@ -10,7 +15,7 @@ async function getMercadoPago(req, res) {
         client_secret: process.env.CLIENT_SECRET,
         code: req.query.code,
         grant_type: "authorization_code",
-        redirect_uri: "http://localhost:4000/api/callback",
+        redirect_uri: `http://localhost:4000/api/callback`,
       }
     );
 
@@ -20,11 +25,11 @@ async function getMercadoPago(req, res) {
       },
     });
 
-    // const user_token = await axios.get("http://localhost:4000/api/profile", {
-    //   headers: {
-    //     'Authorization': `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwYzdkMGIzNGRmNmE4NGY3M2FjZjc0NSIsIm5hbWUiOiJjcmFpZyIsInJvbGUiOiJ1c3VhcmlvIiwiYXZhdGFyIjoiLy93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci8wZTRhY2ZkNTk0YjRmODA5MTMwYWE0MDAwMmI4ZDRhYz9zPTIwMCZyPXBnJmQ9bW0iLCJtZXJjYWRvcGFnbyI6W10sImlhdCI6MTYyMzc4NTY1NywiZXhwIjoxNjIzNzg5MjU3fQ.G_1hqdU9fCmIASjTDmp69UF6YxQYUMCShUhxTWjZJgA"}`
-    //   }
-    // })
+    const user_token = await axios.get("http://localhost:4000/api/profile", {
+      headers: {
+        Authorization: `Bearer ${token.data.jwt}`,
+      },
+    });
 
     const user_mp = new Usermp({
       _id: user_me.data.id,
@@ -35,13 +40,18 @@ async function getMercadoPago(req, res) {
       refresh: resulta.data.refresh_token,
     });
 
-    await user_mp.save();
+    await user_mp.save()
+    const find_user = await User.findById(user_token.data.id);
+		find_user.mercadopago = user_mp;
+		await find_user.save();
+  
 
     res.status(200).json({
-      message: 'ok'
+      message: "ok",
+      find_user
     });
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).json({
       message: err.response.data.message,
     });

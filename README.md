@@ -50,6 +50,7 @@ $ npm test
 /api/users/register (POST)
 
 /api/profile (GET)
+/api/callback (GET)
 
 ```
 #### Modelo User

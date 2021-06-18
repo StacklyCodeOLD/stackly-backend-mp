@@ -33,7 +33,7 @@ const UserSchema = new Schema({
         default: Date.now
     },
     mercadopago: [{
-        type: Schema.Types.ObjectId, ref: 'Usermp'
+        type: Schema.Types.Mixed, ref: 'Usermp'
     }]
 });
 
