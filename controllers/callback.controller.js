@@ -3,10 +3,10 @@ const { User, Usermp } = require("../models/User");
 
 async function getMercadoPago(req, res) {
   try {
-    const token = await axios.post("http://localhost:4000/api/users/login", {
-      email: "craig@stacklycode.com",
-      password: "coliseo1234",
-    });
+    // const token = await axios.post(`http://localhost:4000/api/users/login`, {
+    //   email: req.user.email,
+    //   password: req.user.password,
+    // });
 
     const resulta = await axios.post(
       "https://api.mercadopago.com/oauth/token",
@@ -25,33 +25,31 @@ async function getMercadoPago(req, res) {
       },
     });
 
-    const user_token = await axios.get("http://localhost:4000/api/profile", {
-      headers: {
-        Authorization: `Bearer ${token.data.jwt}`,
-      },
-    });
+    // const user_token = await axios.get(`http://localhost:4000/api/profile`, {
+    //   headers: {
+    //     Authorization: `Bearer ${token.data.jwt}`,
+    //   },
+    // });
 
     const user_mp = new Usermp({
-      _id: user_me.data.id,
+      _id: req.user.id,
       status: "active",
-      email_mp: user_me.data.email,
-      nickname_mp: user_me.data.nickname,
+      email_mp: req.user.email,
+      nickname_mp: req.user.nickname,
       client_id: resulta.data.access_token,
       refresh: resulta.data.refresh_token,
     });
 
-    await user_mp.save()
-    const find_user = await User.findById(user_token.data.id);
-		find_user.mercadopago = user_mp;
-		await find_user.save();
-  
+    await user_mp.save();
+    const find_user = await User.findById(req.user.id);
+    find_user.mercadopago = user_mp;
+    await find_user.save();
 
     res.status(200).json({
       message: "ok",
-      find_user
+      find_user,
     });
   } catch (err) {
-    console.log(err);
     res.status(400).json({
       message: err.response.data.message,
     });

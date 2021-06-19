@@ -8,6 +8,7 @@ const cors = require('cors');
 const authRoute = require('./routes/auth-route');
 const users = require('./routes/user');
 const callback = require('./routes/callback');
+const package = require('./package.json')
 
 const { getLogger, logHandler, terminate } = require('@jwt/utils');
 require('./config/passport')(passport);
@@ -25,14 +26,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(logHandler);
 
 app.use('/api/users', users);
-app.use('/api', callback);
+app.use('/api', passport.authenticate('jwt', { session: false }), callback);
 app.use('/api', passport.authenticate('jwt', { session: false }), authRoute);
 
 app.disable('etag');
 app.disable('x-powered-by');
 
 app.get('/', (req, res) => {
-    res.send('Hola api rest! creado por Fernando López');
+    res.status(200).json({
+        nombre: package.name,
+        version: package.version,
+        status: `En línea hace ${parseInt(process.uptime())} segundos`,
+        empresa: "https://www.stacklycode.com",
+        comunidad: "https://discord.stacklycode.com"
+    });
 });
 
 if (!module.parent) {

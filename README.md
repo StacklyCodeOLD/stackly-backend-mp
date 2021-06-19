@@ -49,8 +49,11 @@ $ npm test
 /api/users/login (POST)
 /api/users/register (POST)
 
+Se requiere pasar por header (Bearer) el token de usuario
+
 /api/profile (GET)
 /api/callback (GET)
+/api/process_payment (POST)
 
 ```
 #### Modelo User
