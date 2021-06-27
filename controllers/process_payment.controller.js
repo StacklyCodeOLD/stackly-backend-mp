@@ -17,7 +17,7 @@ async function processPayment(req, res) {
 
     preference.items = [item];
     preference.back_urls = {
-      success: "http://localhost:3000",
+      success: "http://localhost:3000/dashboard",
     };
     preference.auto_return = "approved";
     preference.marketplace_fee = 3; // cobro comision.

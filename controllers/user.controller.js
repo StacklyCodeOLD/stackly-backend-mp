@@ -88,7 +88,7 @@ async function postLogin(req, res) {
             payload,
             "secret",
             {
-              expiresIn: 3600,
+              expiresIn: 36000,
             },
             (err, jwt) => {
               if (err) console.error("Error en token", err);
@@ -121,7 +121,15 @@ async function postLogin(req, res) {
   }
 }
 
+async function getLogout(req, res) {
+  res.clearCookie('jwt');
+  res.status(200).json({
+    message: "ok"
+  })
+}
+
 module.exports = {
   postRegister,
   postLogin,
+  getLogout
 };

@@ -9,6 +9,6 @@ const processPayment = require("../controllers/process_payment.controller");
 
 router.route("/profile").get(isLoggedIn, profileController.getProfile);
 router.route("/callback").get(isLoggedIn, callbackController.getMercadoPago);
-router.route("/process_payment").post(processPayment.processPayment);
+router.route("/process_payment").post(isLoggedIn, processPayment.processPayment);
 
 module.exports = router;
