@@ -1,8 +1,6 @@
 const express = require("express");
-//const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser")
 const bodyParser = require("body-parser");
-//const passport = require("passport");
 const config = require("./config/db");
 const cors = require("cors");
 
@@ -11,7 +9,6 @@ const users = require("./routes/user");
 const package = require("./package.json");
 
 const { getLogger, logHandler, terminate } = require("@jwt/utils");
-//require("./config/passport")(passport);
 
 const app = express();
 const log = getLogger(__dirname, __filename);
@@ -22,7 +19,7 @@ app.use(cors({
     origin: "http://localhost:3000",
 
 }));
-//app.use(passport.initialize());
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

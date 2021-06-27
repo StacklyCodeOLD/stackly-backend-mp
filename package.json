@@ -32,8 +32,6 @@
         "mercadopago": "^1.5.8",
         "mocha": "^8.2.1",
         "mongoose": "5.4.10",
-        "passport": "^0.4.0",
-        "passport-jwt": "^4.0.0",
         "restify": "^8.5.1",
         "restify-cookies": "^0.2.2",
         "standard-version": "^9.3.0",

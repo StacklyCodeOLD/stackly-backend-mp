@@ -28,5 +28,3 @@ All notable changes to this project will be documented in this file. See [standa
 ### [0.2.4](https://github.com/Beor18/stackly-backend-mp/compare/v0.2.3...v0.2.4) (2021-06-15)
 
 ### 0.2.3 (2021-06-15)
-
-# Changelog
