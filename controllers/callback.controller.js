@@ -3,11 +3,7 @@ const { User, Usermp } = require("../models/User");
 
 async function getMercadoPago(req, res) {
   try {
-    // const token = await axios.post(`http://localhost:4000/api/users/login`, {
-    //   email: req.user.email,
-    //   password: req.user.password,
-    // });
-
+    console.log(req.cookies)
     const resulta = await axios.post(
       "https://api.mercadopago.com/oauth/token",
       {
@@ -25,17 +21,11 @@ async function getMercadoPago(req, res) {
       },
     });
 
-    // const user_token = await axios.get(`http://localhost:4000/api/profile`, {
-    //   headers: {
-    //     Authorization: `Bearer ${token.data.jwt}`,
-    //   },
-    // });
-
     const user_mp = new Usermp({
-      _id: req.user.id,
+      id: user_me.data.id,
       status: "active",
-      email_mp: req.user.email,
-      nickname_mp: req.user.nickname,
+      email_mp: user_me.data.email,
+      nickname_mp: user_me.data.nickname,
       client_id: resulta.data.access_token,
       refresh: resulta.data.refresh_token,
     });
@@ -46,8 +36,7 @@ async function getMercadoPago(req, res) {
     await find_user.save();
 
     res.status(200).json({
-      message: "ok",
-      find_user,
+      message: "ok"
     });
   } catch (err) {
     res.status(400).json({
