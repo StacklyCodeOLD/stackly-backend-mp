@@ -25,7 +25,7 @@ async function processPayment(req, res) {
     mercadopago.preferences.create(preference).then((response) => {
       res.status(200).json({
         preferenceId: response.body.id,
-        urlId: response.body.sandbox_init_point,
+        urlId: response.body.init_point,
       });
     });
   } catch (error) {
