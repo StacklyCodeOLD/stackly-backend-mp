@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://github.com/StacklyCode/stackly-backend-mp/compare/v0.2.10...v0.2.11) (2021-06-27)
+
+
+### Bug Fixes
+
+* fix payment ([a06a7cb](https://github.com/StacklyCode/stackly-backend-mp/commit/a06a7cbe77f644b0991ffc2650263b41798d1610))
+
 ### [0.2.10](https://github.com/StacklyCode/stackly-backend-mp/compare/v0.2.9...v0.2.10) (2021-06-27)
 
 
