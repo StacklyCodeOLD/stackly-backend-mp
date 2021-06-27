@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://github.com/StacklyCode/stackly-backend-mp/compare/v0.2.8...v0.2.9) (2021-06-27)
+
+
+### Bug Fixes
+
+* remove packages ([6f94982](https://github.com/StacklyCode/stackly-backend-mp/commit/6f94982cbf2bd86e03a546cfd50123cf6521d572))
+
 ### [0.2.8](https://github.com/StacklyCode/stackly-backend-mp/compare/v0.2.6...v0.2.8) (2021-06-27)
 
 
