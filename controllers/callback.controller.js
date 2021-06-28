@@ -35,9 +35,7 @@ async function getMercadoPago(req, res) {
     find_user.mercadopago = user_mp;
     await find_user.save();
 
-    res.status(200).json({
-      message: "ok"
-    });
+    res.status(200).redirect("http://localhost:3000/dashboard")
   } catch (err) {
     res.status(400).json({
       message: err.response.data.message,

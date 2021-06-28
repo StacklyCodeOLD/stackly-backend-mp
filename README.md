@@ -48,8 +48,8 @@ $ npm test
 ```js
 /api/users/login (POST)
 /api/users/register (POST)
+/api/users/logout (GET)
 
-Se requiere pasar por header (Bearer) el token de usuario
 
 /api/profile (GET)
 /api/callback (GET)
