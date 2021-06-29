@@ -98,7 +98,7 @@ async function postLogin(req, res) {
                     sameSite: "None",
                     path: "/",
                     httpOnly: true,
-                    secure: false,
+                    secure: true,
                   })
                   .json({
                     error: false,
