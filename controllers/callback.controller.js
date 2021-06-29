@@ -11,7 +11,7 @@ async function getMercadoPago(req, res) {
         client_secret: process.env.CLIENT_SECRET,
         code: req.query.code,
         grant_type: "authorization_code",
-        redirect_uri: `http://localhost:4000/api/callback`,
+        redirect_uri: `https://stackly-mercado-pago.herokuapp.com/api/callback`,
       }
     );
 
@@ -35,7 +35,7 @@ async function getMercadoPago(req, res) {
     find_user.mercadopago = user_mp;
     await find_user.save();
 
-    res.status(200).redirect("http://localhost:3000/dashboard")
+    res.status(200).redirect("https://peaceful-jones-09cd49.netlify.app/dashboard")
   } catch (err) {
     res.status(400).json({
       message: err.response.data.message,

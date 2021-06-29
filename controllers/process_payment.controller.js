@@ -17,7 +17,7 @@ async function processPayment(req, res) {
 
     preference.items = [item];
     preference.back_urls = {
-      success: "http://localhost:3000/dashboard",
+      success: "https://peaceful-jones-09cd49.netlify.app/dashboard",
     };
     preference.auto_return = "approved";
     preference.marketplace_fee = 3; // cobro comision.
