@@ -95,10 +95,10 @@ async function postLogin(req, res) {
                 return res
                   .status(200)
                   .cookie("jwt", `${jwt}`, {
-                    //sameSite: "None",
+                    sameSite: "None",
                     path: "/",
                     httpOnly: true,
-                    secure: false,
+                    secure: true,
                   })
                   .json({
                     error: false,
